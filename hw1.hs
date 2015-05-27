@@ -29,10 +29,6 @@ the third-to-last digit is unchanged; and so on. For example,
 from the original number. For example, [2,3,16,6] becomes
 2+3+1+6+6 = 18.
 
-1Adapted from the first practicum assigned in the University of Utrecht functional
-programming course taught by Doaitse Swierstra, 2008-2009.
-cis 194: homework 1 2
-
 • Calculate the remainder when the sum is divided by 10. For the
 above example, the remainder would be 8.
 If the result equals 0, then the number is valid.
@@ -104,11 +100,15 @@ that indicates whether an Integer could be a valid credit card number.
 This will use all functions defined in the previous exercises.
 Example: validate 4012888888881881 = True
 Example: validate 4012888888881882 = False
-cis 194: homework 1 3
-The Towers of Hanoi2
 -}
 
+validate :: Integer -> Bool
+validate x
+  | sumDigits(doubleEveryOther(toDigits x)) `mod` 10 == 0 = True
+  | otherwise = False
+  
 {-
+The Towers of Hanoi2
 Exercise 5 The Towers of Hanoi is a classic puzzle with a solution
 that can be described recursively. Disks of different sizes are stacked
 on three pegs; the goal is to get from a starting configuration with
