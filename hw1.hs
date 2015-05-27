@@ -74,6 +74,15 @@ Example: doubleEveryOther [8,7,6,5] == [16,7,12,5]
 Example: doubleEveryOther [1,2,3] == [1,4,3]
 -}
 
+doubleEveryOtherLeft :: [Integer] -> [Integer]
+doubleEveryOtherLeft [] = []
+doubleEveryOtherLeft [x] = [x]
+doubleEveryOtherLeft [x,y] = [x, 2*y]
+doubleEveryOtherLeft (x:y:zs) = x:2*y:doubleEveryOtherLeft(zs)
+
+doubleEveryOther     :: [Integer] -> [Integer]
+doubleEveryOther xs = reverse (doubleEveryOtherLeft (reverse xs))
+
 {-
 Exercise 3 The output of doubleEveryOther has a mix of one-digit
 and two-digit numbers. Define the function
