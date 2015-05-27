@@ -57,7 +57,7 @@ toDigitsRev n
 toDigitsRev n = n `mod` 10 : toDigitsRev (n `div` 10)
 
 toDigits    :: Integer -> [Integer]
-toDigits n = reverse (toDigitsRev n)
+toDigits n = (reverse . toDigitsRev) n
 
 {-
 Exercise 2 Once we have the digits in the proper order, we need to
@@ -79,7 +79,7 @@ doubleEveryOtherLeft [x,y] = [x, 2*y]
 doubleEveryOtherLeft (x:y:zs) = x:2*y:doubleEveryOtherLeft(zs)
 
 doubleEveryOther     :: [Integer] -> [Integer]
-doubleEveryOther xs = reverse (doubleEveryOtherLeft (reverse xs))
+doubleEveryOther xs = (reverse . doubleEveryOtherLeft . reverse) xs
 
 {-
 Exercise 3 The output of doubleEveryOther has a mix of one-digit
@@ -91,7 +91,7 @@ Example: sumDigits [16,7,12,5] = 1 + 6 + 7 + 1 + 2 + 5 = 22
 
 sumDigits :: [Integer] -> Integer
 sumDigits [] = 0
-sumDigits (x:xs) = sum(toDigits x) + (sumDigits xs)
+sumDigits (x:xs) = (sum . toDigits) x + sumDigits xs
 
 {-
 Exercise 4 Define the function
@@ -104,9 +104,9 @@ Example: validate 4012888888881882 = False
 
 validate :: Integer -> Bool
 validate x
-  | sumDigits(doubleEveryOther(toDigits x)) `mod` 10 == 0 = True
+  | (sumDigits . doubleEveryOther . toDigits) x `mod` 10 == 0 = True
   | otherwise = False
-  
+
 {-
 The Towers of Hanoi2
 Exercise 5 The Towers of Hanoi is a classic puzzle with a solution
