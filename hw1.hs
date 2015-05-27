@@ -74,6 +74,8 @@ Example: doubleEveryOther [8,7,6,5] == [16,7,12,5]
 Example: doubleEveryOther [1,2,3] == [1,4,3]
 -}
 
+-- unfortunately, couldn't figure out how to do this from the right
+-- so do it from the left and use reverse
 doubleEveryOtherLeft :: [Integer] -> [Integer]
 doubleEveryOtherLeft [] = []
 doubleEveryOtherLeft [x] = [x]
@@ -90,6 +92,10 @@ sumDigits :: [Integer] -> Integer
 to calculate the sum of all digits.
 Example: sumDigits [16,7,12,5] = 1 + 6 + 7 + 1 + 2 + 5 = 22
 -}
+
+sumDigits :: [Integer] -> Integer
+sumDigits [] = 0
+sumDigits (x:xs) = sum(toDigits x) + (sumDigits xs)
 
 {-
 Exercise 4 Define the function
