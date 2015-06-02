@@ -135,8 +135,6 @@ For this exercise, define a function hanoi with the following type:
 type Peg = String
 type Move = (Peg, Peg)
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
-2Adapted from an assignment given in UPenn CIS 552, taught by Benjamin Pierce
-cis 194: homework 1 4
 Given the number of discs and names for the three pegs, hanoi
 should return a list of moves to be performed to move the stack of
 discs from the first peg to the second.
@@ -148,6 +146,13 @@ give shorter names to complicated types, or (as here) simply to help
 with documentation.
 Example: hanoi 2 "a" "b" "c" == [("a","c"), ("a","b"), ("c","b")]
 -}
+
+type Peg = String
+type Move = (Peg, Peg)
+hanoi ::  Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi 0 _ _ _ = []
+hanoi 1 a b _ = [(a, b)]
+hanoi n a b c = (hanoi (n-1) a c b) ++ (hanoi 1 a b c) ++ (hanoi (n-1) c b a)
 
 {-
 Exercise 6 (Optional) What if there are four pegs instead of three?
